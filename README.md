@@ -203,7 +203,7 @@ This bridge runs **locally on your computer**. No data is sent to third-party se
 ### Need Help?
 
 1. **Check the guides:** Most issues are covered in troubleshooting sections
-2. **The Labyrinth Discord:** Ask for help at [discord.gg/labyrinth](https://discord.gg) (invite link TBD)
+2. **The Labyrinth Discord:** Ask for help at [discord.gg/the-labyrinth](https://discord.gg/the-labyrinth) (invite link TBD)
 3. **GitHub Issues:** Report bugs or request features [here](https://github.com/codependent-ai/mcp-discord/issues)
 
 ### Contributing
