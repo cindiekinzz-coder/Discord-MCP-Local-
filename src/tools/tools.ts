@@ -35,6 +35,8 @@ import {
   editWebhookHandler,
   deleteWebhookHandler
 } from './webhooks.js';
+import { sendVoiceMessageHandler } from './voice-message.js';
+import { fetchImageHandler } from './image.js';
 
 // Export tool handlers
 export {
@@ -61,7 +63,9 @@ export {
   editCategoryHandler,
   deleteCategoryHandler,
   listServersHandler,
-  searchMessagesHandler
+  searchMessagesHandler,
+  sendVoiceMessageHandler,
+  fetchImageHandler
 };
 
 // Export common types

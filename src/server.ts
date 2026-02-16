@@ -31,7 +31,9 @@ import {
   editCategoryHandler,
   deleteCategoryHandler,
   listServersHandler,
-  searchMessagesHandler
+  searchMessagesHandler,
+  sendVoiceMessageHandler,
+  fetchImageHandler
 } from './tools/tools.js';
 import { MCPTransport } from './transport.js';
 import { info, error } from './logger.js';
@@ -188,6 +190,16 @@ export class DiscordMCPServer {
           case "discord_search_messages":
             this.logClientState("before discord_search_messages handler");
             toolResponse = await searchMessagesHandler(args, this.toolContext);
+            return toolResponse;
+
+          case "discord_send_voice":
+            this.logClientState("before discord_send_voice handler");
+            toolResponse = await sendVoiceMessageHandler(args, this.toolContext);
+            return toolResponse;
+
+          case "discord_fetch_image":
+            this.logClientState("before discord_fetch_image handler");
+            toolResponse = await fetchImageHandler(args, this.toolContext);
             return toolResponse;
 
           default:

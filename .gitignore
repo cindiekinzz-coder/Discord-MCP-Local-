@@ -32,4 +32,16 @@ record/
 
 # Operating Systems
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Claude Code temp files
+tmpclaude-*
+C:Users*
+
+# Personal companion rules (use template)
+*-DISCORD-RULES.md
+!DISCORD-RULES.template.md
+
+# Personal utility scripts
+alex-reach.js
+discord_reader.mjs

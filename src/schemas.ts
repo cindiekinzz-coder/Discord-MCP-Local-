@@ -151,3 +151,11 @@ export const SearchMessagesSchema = z.object({
   limit: z.number().min(1).max(100).default(25).optional(),
   offset: z.number().min(0).default(0).optional()
 });
+
+export const SendVoiceMessageSchema = z.object({
+  channelId: z.string(),
+  text: z.string().min(1).max(5000),
+  voiceId: z.string().optional(),
+  includeText: z.boolean().optional().default(false),
+  replyToMessageId: z.string().optional()
+});

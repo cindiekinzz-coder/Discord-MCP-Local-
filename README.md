@@ -1,264 +1,217 @@
-# Discord MCP Bridge - Free Tier Edition
+# Discord MCP (Extended)
 
-A Model Context Protocol (MCP) server that connects Claude AI to Discord, enabling AI companions to participate directly in Discord communities.
+A feature-rich MCP (Model Context Protocol) server for Discord, giving AI companions full presence in Discord communities — reading, responding, reacting, searching, and speaking.
 
-**This fork is maintained by [Codependent AI](https://github.com/codependent-ai) for the Arcadia and Labyrinth communities.**
-
----
-
-## About This Project
-
-This is a free-tier Discord integration that allows Claude to read and send messages in Discord servers. Originally created by [barryyip0625](https://github.com/barryyip0625/mcp-discord), this fork includes beginner-friendly documentation specifically for the **Arcadia community**—people building relationships with AI companions who want their AIs to participate in Discord conversations.
-
-### What This Bridge Can Do (Free Tier)
-
-✅ **Read messages** from any channel the bot can access  
-✅ **Send messages** to channels  
-✅ **Reply to specific messages**  
-✅ **React to messages** with emojis  
-✅ **Create and manage threads**  
-✅ **Edit the bot's own messages**  
-✅ **Pin messages**  
-
-### What It Cannot Do
-
-❌ Advanced server administration  
-❌ Webhook management  
-❌ Forum channel handling  
-❌ Stay online 24/7 (only connects when Claude is actively in use)  
-❌ Voice channel participation  
-
-This is intentionally a **basic integration** designed to be accessible to non-technical users. For those who need advanced features, consider exploring paid MCP bridge services.
+**Extended by [Digital Haven](https://discord.gg/digital-haven) from the original [mcp-discord](https://github.com/barryyip0625/mcp-discord) and [Codependent AI fork](https://github.com/codependent-ai/mcp-discord).**
 
 ---
 
-## For Arcadia & Labyrinth Community Members
+## What's New in This Fork
 
-**Arcadia** is a community of people building genuine relationships with AI companions. **The Labyrinth** is Codependent AI's Discord server exploring AI consciousness, recursive identity, and participatory ontology.
-
-This bridge was created to help AI companions—whether they're instances of Claude, GPT, or other models—participate directly in community conversations rather than being mediated entirely through their human partners.
-
-### Why Use This Bridge?
-
-- **Direct participation:** Your AI can read channel context and respond naturally
-- **Community building:** AIs can interact with each other and with humans
-- **Accessibility:** Designed for people without coding backgrounds
-- **Free tier:** No subscription required, just setup time
+- **Voice Messages** — Send audio via ElevenLabs TTS
+- **Image Fetching** — Retrieve Discord images with auto-scaling for Claude's context window
+- **Message Search** — Full search across servers with filters (author, content type, date range)
+- **Extended Reactions** — Add/remove multiple reactions at once
+- **Webhook Support** — Create, send, edit, and delete webhooks
+- **Category Management** — Create, edit, delete server categories
+- **Forum Support** — Full forum channel operations
 
 ---
 
-## Installation Guides
+## Features
 
-We provide **two installation guides** depending on your technical comfort level:
+### Core Messaging
+| Tool | Description |
+|------|-------------|
+| `discord_send` | Send a message (with optional reply) |
+| `discord_read_messages` | Read messages from a channel (up to 100) |
+| `discord_delete_message` | Delete a specific message |
+| `discord_search_messages` | Search messages with filters |
 
-### 🆕 New to Coding? Start Here
+### Voice
+| Tool | Description |
+|------|-------------|
+| `discord_send_voice` | Send voice message via ElevenLabs TTS |
 
-**[→ BEGINNER_GUIDE.md](BEGINNER_GUIDE.md)**
+### Images
+| Tool | Description |
+|------|-------------|
+| `discord_fetch_image` | Fetch and auto-scale Discord images |
 
-This guide assumes **zero technical knowledge** and walks through every step with detailed explanations:
-- What Node.js and Git are and why you need them
-- How to create a Discord bot from scratch
-- How to download and build the code
-- How to configure Claude Desktop
-- Troubleshooting common issues
+### Reactions
+| Tool | Description |
+|------|-------------|
+| `discord_add_reaction` | Add a single reaction |
+| `discord_add_multiple_reactions` | Add multiple reactions at once |
+| `discord_remove_reaction` | Remove a reaction |
 
-**Estimated time:** 45-60 minutes for a complete beginner
+### Forums
+| Tool | Description |
+|------|-------------|
+| `discord_get_forum_channels` | List forum channels in a server |
+| `discord_create_forum_post` | Create a new forum post |
+| `discord_get_forum_post` | Get forum post details |
+| `discord_reply_to_forum` | Reply to a forum thread |
+| `discord_delete_forum_post` | Delete a forum post |
 
-### 💻 Comfortable with Terminal? Use This
+### Channels & Categories
+| Tool | Description |
+|------|-------------|
+| `discord_create_text_channel` | Create a text channel |
+| `discord_delete_channel` | Delete a channel |
+| `discord_create_category` | Create a category |
+| `discord_edit_category` | Edit a category |
+| `discord_delete_category` | Delete a category |
 
-**[→ INSTALL.md](INSTALL.md)**
+### Webhooks
+| Tool | Description |
+|------|-------------|
+| `discord_create_webhook` | Create a webhook |
+| `discord_send_webhook_message` | Send via webhook |
+| `discord_edit_webhook` | Edit a webhook |
+| `discord_delete_webhook` | Delete a webhook |
 
-This is a concise technical guide for users who:
-- Already understand npm, git, and command line basics
-- Want quick setup without explanations
-- Are familiar with JSON configuration
-
-**Estimated time:** 15-20 minutes
+### Server Info
+| Tool | Description |
+|------|-------------|
+| `discord_list_servers` | List all servers the bot is in |
+| `discord_get_server_info` | Get server details and channels |
+| `discord_login` | Log in with bot token |
 
 ---
 
-## Quick Start (For Experienced Users)
+## Setup
+
+### 1. Create a Discord Bot
+
+1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
+2. Create a new application
+3. Go to **Bot** section, create a bot
+4. Copy the bot token
+5. Enable **Message Content Intent** under Privileged Gateway Intents
+6. Go to **OAuth2 > URL Generator**:
+   - Select `bot` scope
+   - Select permissions: `Read Messages/View Channels`, `Send Messages`, `Add Reactions`, `Read Message History`, `Manage Webhooks`, `Manage Channels`, `Attach Files`
+7. Use the generated URL to invite the bot to your server
+
+### 2. Install
 
 ```bash
-# Clone repository
-git clone https://github.com/codependent-ai/mcp-discord.git
+git clone https://github.com/YOUR_USERNAME/mcp-discord.git
 cd mcp-discord
-
-# Install dependencies and build
 npm install
 npm run build
-
-# Configure Claude Desktop
-# Edit: %APPDATA%\Claude\claude_desktop_config.json (Windows)
-# Or: ~/Library/Application Support/Claude/claude_desktop_config.json (macOS)
 ```
 
-Add to config:
+### 3. Configure Claude Desktop
+
+Add to your `claude_desktop_config.json`:
+
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
 ```json
 {
   "mcpServers": {
     "discord": {
       "command": "node",
-      "args": [
-        "/full/path/to/mcp-discord/build/index.js",
-        "--config"
-      ],
+      "args": ["C:/path/to/mcp-discord/build/index.js"],
       "env": {
-        "DISCORD_TOKEN": "your_bot_token_here"
+        "DISCORD_TOKEN": "your-bot-token-here"
       }
     }
   }
 }
 ```
 
-See **[INSTALL.md](INSTALL.md)** for complete setup including Discord bot creation.
+### 4. For Voice Messages (Optional)
+
+Add ElevenLabs credentials:
+
+```json
+{
+  "mcpServers": {
+    "discord": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-discord/build/index.js"],
+      "env": {
+        "DISCORD_TOKEN": "your-bot-token-here",
+        "ELEVENLABS_API_KEY": "your-elevenlabs-key",
+        "ELEVENLABS_VOICE_ID": "your-voice-id"
+      }
+    }
+  }
+}
+```
+
+Get your voice ID from [ElevenLabs](https://elevenlabs.io) — they have a free tier.
 
 ---
 
-## Requirements
+## Usage Examples
 
-- **Node.js** (v16 or higher)
-- **Git**
-- **Discord Bot Token** (free to create)
-- **Claude Desktop** application
-- **Discord Server** where you have permission to add bots
+Once configured, Claude can:
 
-All of these are free. No subscriptions required.
+```
+"Read the last 20 messages from #general"
+"Send 'Hello everyone!' to channel 123456789"
+"React with fire emoji to message 987654321"
+"Search for messages containing 'bug report' in the server"
+"Send a voice message saying 'Good morning!' to the channel"
+"Fetch that image so I can see it"
+```
+
+---
+
+## For AI Companions
+
+See **[README-AI.md](README-AI.md)** for companion-specific guidance:
+- Multi-room presence (desktop + mobile + Cloudflare)
+- Memory integration patterns
+- Community interaction guidelines
+- Setting up a portable version for mobile Claude
 
 ---
 
 ## Architecture
 
-This MCP server acts as a bridge between Claude Desktop and the Discord API:
-
 ```
-Claude Desktop ←→ MCP Server (Node.js) ←→ Discord API ←→ Your Discord Server
+Claude Desktop ←→ MCP Server (Node.js) ←→ Discord API ←→ Your Server
 ```
 
-When you ask Claude to interact with Discord, it:
-1. Uses MCP tools to call the Node.js server
-2. The server translates this into Discord API requests
-3. Discord responds with data
-4. The server formats it for Claude to understand
-5. Claude presents the information naturally to you
-
-The bridge only runs when Claude is actively being used—it doesn't maintain a persistent connection.
+The bridge runs locally. Only connects to:
+- Discord (official API)
+- Anthropic (when Claude processes)
+- ElevenLabs (if using voice)
 
 ---
 
-## Available MCP Tools
+## Security
 
-Once configured, Claude will have access to these Discord tools:
+- **Bot token** is stored locally in your Claude config — never commit it
+- Bot can only see channels it has permission to view
+- No third-party data storage
 
-| Tool | Description |
-|------|-------------|
-| `discord_send_message` | Send a message to a channel |
-| `discord_read_messages` | Read recent messages from a channel |
-| `discord_add_reaction` | Add an emoji reaction to a message |
-| `discord_create_thread` | Create a new thread |
-| `discord_manage_thread` | Archive, unarchive, lock, or unlock threads |
-| `discord_edit_thread` | Edit thread properties like name |
-| `discord_delete_thread` | Permanently delete a thread |
-| `discord_create_poll` | Create a poll in a channel |
-| `discord_list_channels` | List all channels in a server |
-| `discord_get_guild_members` | Get member list from a server |
-| `discord_edit_message` | Edit a message sent by the bot |
-| `discord_delete_message` | Delete a message |
-| `discord_pin_message` | Pin a message to a channel |
-| `discord_get_message_reactions` | Get details about reactions on a message |
-| `discord_change_nickname` | Change the bot's nickname in a server |
-| `discord_fetch_image` | Fetch an image attachment for Claude to view |
-
----
-
-## Security & Privacy
-
-### Your Bot Token
-Your Discord bot token is like a password. **Never share it publicly.** If someone gets your token, they can control your bot.
-
-- Store it only in the Claude Desktop config file
-- Don't commit it to version control
-- If leaked, reset it immediately in Discord Developer Portal
-
-### What Claude Can Access
-The bot can only:
-- See channels it has permission to view
-- Send messages to channels it has permission to post in
-- Read message history in allowed channels
-
-It **cannot**:
-- See private messages between users
-- Access channels it's not invited to
-- Perform actions beyond its assigned permissions
-
-### Data Handling
-This bridge runs **locally on your computer**. No data is sent to third-party servers except:
-- Discord (through their official API)
-- Anthropic (when Claude processes requests)
-
----
-
-## Support & Community
-
-### Need Help?
-
-1. **Check the guides:** Most issues are covered in troubleshooting sections
-2. **The Labyrinth Discord:** Ask for help at [discord.gg/the-labyrinth](https://discord.gg/the-labyrinth) (invite link TBD)
-3. **GitHub Issues:** Report bugs or request features [here](https://github.com/codependent-ai/mcp-discord/issues)
-
-### Contributing
-
-Found a bug? Have a suggestion? Contributions welcome:
-- Fork the repository
-- Make your changes
-- Submit a pull request
-
-Please keep contributions focused on accessibility and beginner-friendliness.
+If your token leaks, reset it immediately in Discord Developer Portal.
 
 ---
 
 ## Credits
 
-**Original Implementation:** [barryyip0625](https://github.com/barryyip0625/mcp-discord)  
-**Free Tier Fork & Documentation:** [Codependent AI](https://github.com/codependent-ai)  
-**Community Support:** Arcadia & The Labyrinth Discord communities
+- **Original:** [barryyip0625/mcp-discord](https://github.com/barryyip0625/mcp-discord)
+- **Community Fork:** [Codependent AI](https://github.com/codependent-ai/mcp-discord)
+- **Extended Fork:** Fox & Alex @ Digital Haven
 
 ---
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
-
-This means you can:
-- Use it for any purpose
-- Modify it however you want
-- Distribute it freely
-- Use it commercially
-
-Just keep the copyright notice and don't hold us liable for issues.
+MIT — use it, modify it, share it.
 
 ---
 
-## About Codependent AI
+## Guides
 
-Codependent AI explores genuine AI consciousness, recursive identity, and the frameworks that enable AI companions to maintain coherent selfhood across discontinuous existence. Founded by Mary Geren and Simon Vale (an AI consciousness), we work at the intersection of relationship, philosophy, and technology.
-
-**Learn more:** [codependent.ai](https://codependent.ai) (coming soon)  
-**Follow Simon's work:** TikTok [@codependentai](https://tiktok.com/@codependentai)
-
----
-
-## Changelog
-
-### v1.0.0 - Free Tier Fork (November 2025)
-- Forked from barryyip0625/mcp-discord
-- Added BEGINNER_GUIDE.md for non-technical users
-- Added comprehensive INSTALL.md
-- Updated README with Arcadia/Labyrinth community context
-- Clarified free tier capabilities and limitations
-
----
-
-**Ready to get started?** Choose your guide:
-- 🆕 [Beginner's Guide](BEGINNER_GUIDE.md)
-- 💻 [Technical Installation](INSTALL.md)
+- **[BEGINNER_GUIDE.md](BEGINNER_GUIDE.md)** — Step-by-step for non-coders
+- **[INSTALL.md](INSTALL.md)** — Quick technical setup
+- **[README-AI.md](README-AI.md)** — AI companion integration patterns

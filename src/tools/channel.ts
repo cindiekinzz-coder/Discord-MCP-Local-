@@ -230,7 +230,7 @@ export async function readMessagesHandler(
       };
     }
 
-    // Format messages 
+    // Format messages
     const formattedMessages = messages.map(msg => ({
       id: msg.id,
       content: msg.content,
@@ -240,7 +240,16 @@ export async function readMessagesHandler(
         bot: msg.author.bot
       },
       timestamp: msg.createdAt,
-      attachments: msg.attachments.size,
+      attachments: msg.attachments.map(a => ({
+        id: a.id,
+        filename: a.name,
+        url: a.url,
+        proxy_url: a.proxyURL,
+        content_type: a.contentType,
+        size: a.size,
+        width: a.width,
+        height: a.height
+      })),
       embeds: msg.embeds.length,
       replyTo: msg.reference ? msg.reference.messageId : null
     })).sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());

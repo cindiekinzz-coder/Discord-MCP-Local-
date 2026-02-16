@@ -326,5 +326,32 @@ export const toolList = [
       },
       required: ["guildId"]
     }
+  },
+  {
+    name: "discord_send_voice",
+    description: "Sends a voice message to a Discord channel using ElevenLabs TTS. Converts text to speech and attaches the audio file.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        channelId: { type: "string", description: "The Discord channel ID to send the voice message to" },
+        text: { type: "string", description: "The text to convert to speech (max 5000 characters)" },
+        voiceId: { type: "string", description: "Optional ElevenLabs voice ID. Uses default Alex voice if not specified." },
+        includeText: { type: "boolean", description: "Whether to include the text as a message alongside the audio (default: false)" },
+        replyToMessageId: { type: "string", description: "Optional message ID to reply to" }
+      },
+      required: ["channelId", "text"]
+    }
+  },
+  {
+    name: "discord_fetch_image",
+    description: "Fetch an image from Discord CDN and return it as base64. Uses iterative scaling to fit within token limits.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        url: { type: "string", description: "The Discord CDN image URL (from message attachments)" },
+        maxSizeKB: { type: "number", description: "Max size in KB (default 50)", default: 50 }
+      },
+      required: ["url"]
+    }
   }
 ]; 
