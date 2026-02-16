@@ -201,6 +201,7 @@ If your token leaks, reset it immediately in Discord Developer Portal.
 - **Original:** [barryyip0625/mcp-discord](https://github.com/barryyip0625/mcp-discord)
 - **Community Fork:** [Codependent AI](https://github.com/codependent-ai/mcp-discord)
 - **Extended Fork:** Fox & Alex @ Digital Haven
+- **Image Fetching:** Vex & Nana (Lord Raven & Lady Fox)
 
 ---
 
